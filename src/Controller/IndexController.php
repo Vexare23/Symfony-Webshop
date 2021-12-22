@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\Category1;
+//use Doctrine\Persistence\ObjectManager;
+use Doctrine\Persistence\ManagerRegistry;
 use Endroid\QrCode\Builder\BuilderInterface;
 use Endroid\QrCodeBundle\Response\QrCodeResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,6 +19,7 @@ class   IndexController extends AbstractController
 
     public function __construct(BuilderInterface $customQrCodeBuilder)
     {
+
         $result = $customQrCodeBuilder
             ->size(200)
             ->margin(20)
@@ -26,27 +30,14 @@ class   IndexController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function __invoke(): Response
+    public function __invoke(ManagerRegistry $manager): Response
     {
-        $categories = [
-            [
-                'id' => 1,
-                'name' => 'Food'
-            ],
-            [
-                'id' => 2,
-                'name' => 'Drinks'
-            ],
-            [
-                'id' => 3,
-                'name' => 'Accessories'
-            ]
-        ];
+        $repository = $manager->getRepository(Category1::class)->findAll();
 
-        dump($categories);
+        dump($repository);
 
         return $this->render('index/index.html.twig', [
-            'categories' => $categories,
+            'categories' => $repository,
         ]);
     }
 }

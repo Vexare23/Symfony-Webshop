@@ -3,7 +3,82 @@
 {% block title %} Category   {% endblock %}
 
 {% block body %}
+    <style>
+        table, td {
+            border: 1px solid black;
+        }
+    </style>
 
-{{ categoryName }}
+    <div class="container">
+        <div class="row">
+            <div class="col-14">
+                <h2 class="my-4">{{ category.name }}
+                    <button type="button" onclick="myFunction(this)" id="1">Update {{ category.name }}</button>
+                    <button type="button" onclick="myFunction(this)" id="2">Delete {{ category.name }}</button>
+                    <script>
+                        function myFunction(button){
+                            var x =button.id;
+                            switch (x) {
+                                case '1':
+                                    location.href = "{{ path('edit_category',{ id: category.id }) }}";
+                                    break;
+                                case '2':
+                                    location.href = "{{ path('delete_category',{ id: category.id }) }}";
+                                    break;
+                                default:
+                                    return false;
+                            }
+                        }
+                    </script>
+                </h2>
+                {% if not category.products|length > 0 %}
+                    <h2>  There are no Available products for this category in out Database. =( </h2>
+                {% else %}
+                    {% for product in category.products | sort((a,b) => b.name <=> a.name) %}
+                <div style="box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);">
+                    <div class="q-container-show p-4">
+                        <div class="row">
+                            <div class="col">
+                                <div class="q-display p-3">
+                                    <table class="center" id="myTable">
+                                        <tr>
+                                            <td>Product name:
+                                                <a class="navbar-brand" href="{{path('product_show',{ id: product.id })}}">
+                                                    <i style="color: #444; font-size: 2rem;" class="pb-1 fad fa-cauldron"></i>
+                                                    <p class="pl-2 d-inline font-weight-bold" style="color: #444;">{{ product.name }}</p>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Price: {{ product.price }} $
+                                            </td>
+                                        </tr>
+                                        {% if not product.updatedAt %}
+                                        <tr>
+                                            <td>Updated at: Never
+                                            </td>
+                                        </tr>
+                                        {% else %}
+                                        <tr>
+                                            <td>Updated at: {{  product.updatedAt|date('d-m-Y H:i') }}
+                                            </td>
+                                        </tr>
+                                        {% endif %}
+
+                                        <tr>
+                                            <td>ID: {{ product.id }}
+                                            </td>
+                                        </tr>
+                                    </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+                {% endif %}
+        </div>
+    </div>
+    </div>
 
 {% endblock %}

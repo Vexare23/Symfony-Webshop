@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Product   {% endblock %}
+
+{% block body %}
+
+You found {{ product.name }}. Great JOB!!!
+    <br>
+    <button type="button" onclick="myFunction(this)" id="1">Update {{ product.name }}</button>
+    <br>
+    <button type="button" onclick="myFunction(this)" id="2">Delete {{ product.name }}</button>
+    <script>
+        function myFunction(button){
+            var x =button.id;
+            switch (x) {
+                case '1':
+                    location.href = "{{ path('edit_product',{ id: product.id }) }}";
+                    break;
+                case '2':
+                    location.href = "{{ path('delete_product',{ id: product.id }) }}";
+                    break;
+                default:
+                    return false;
+            }
+        }
+    </script>
+{% endblock %}

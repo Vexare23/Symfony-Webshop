@@ -5,22 +5,46 @@
         table, td {
             border: 1px solid black;
         }
-    </style>{% endblock %}
-
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Spartan&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ '/css/app.css' }}">
+{% endblock %}
 {% block body %}
 
-    <h3>Category table</h3>
+    <h3>Category table     <button type="button" onclick="myFunction(this)" id="1">Add new category</button>
+    </h3>
 
     <table id="myTable">
-            {% for categor in categories %}
+            {% for category in categories|sort((a,b) => a.name <=> b.name) %}
                 <tr>
-                    <td><a class="navbar-brand" href="{{path('category_show',{ name: categor['name']})}}">
+                    <td>{{ category.id }}<a class="navbar-brand" href="{{path('category_show',{ id: category.id })}}">
                             <i style="color: #444; font-size: 2rem;" class="pb-1 fad fa-cauldron"></i>
-                            <p class="pl-2 d-inline font-weight-bold" style="color: #444;">{{ categor['name'] }}</p>
+                            <p class="pl-2 d-inline font-weight-bold" style="color: #444;">{{ category.name }}</p>
                         </a></td>
                 </tr>
             {% endfor %}
     </table>
+
+    <br>
+    <button type="button" onclick="myFunction(this)" id="2">Add new product</button>
+
+    <script>
+        function myFunction(button){
+            var x =button.id;
+            switch (x) {
+                case '1':
+                    location.href = "{{ path('new_category') }}";
+                    break;
+                case '2':
+                    location.href = "{{ path('new_product') }}";
+                    break;
+                default:
+                    return false;
+            }
+        }
+    </script>
 
     <div class="container">
         <div class="row mb-3">
@@ -29,14 +53,5 @@
             </div>
         </div>
     </div>
-
-    <!---<button onclick="myFunction()">Try it</button>
-
-    <script>
-        function myFunction() {
-            const x = document.getElementById("myTable");
-            x.deleteRow(0);
-        }
-    </script>--->
 
 {% endblock %}
