@@ -1,13 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Entity\Category1;
-//use App\Form\CategoryFormType;
-//use Doctrine\ORM\EntityManager;
-use App\Entity\Product;
 use Doctrine\Persistence\ManagerRegistry;
-//use Doctrine\Persistence\ObjectManager;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;

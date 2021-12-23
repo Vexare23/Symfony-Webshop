@@ -1,11 +1,11 @@
 <?php
 
-// src/DataFixtures/LoadCategories.php
+declare(strict_types=1);
+
 namespace App\DataFixtures;
 
 use App\Entity\Category1;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 
 class LoadCategories extends Fixture

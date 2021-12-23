@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
-use App\Entity\Category1;
 use App\Entity\Product;
 use App\Form\ProductFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class EditProduct extends AbstractController
@@ -15,7 +17,7 @@ class EditProduct extends AbstractController
     /**
      * @Route("editProduct/{id}", name="edit_product")
      */
-    public function edit(Product $product, Request $request, EntityManagerInterface $manager)
+    public function edit(Product $product, Request $request, EntityManagerInterface $manager): Response
     {
         $form = $this->createForm(ProductFormType::class, $product);
 

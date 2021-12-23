@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Entity\Category1;
@@ -7,6 +9,7 @@ use App\Form\CategoryFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryFormController extends AbstractController
@@ -14,7 +17,7 @@ class CategoryFormController extends AbstractController
     /**
      * @Route("newCategory", name="new_category")
      */
-    public function new(EntityManagerInterface $manager, Request $request)
+    public function new(EntityManagerInterface $manager, Request $request): Response
     {
         $form = $this->createForm(CategoryFormType::class);
 

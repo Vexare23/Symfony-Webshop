@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\DataFixtures;
 
 use App\Entity\Product;
@@ -14,45 +16,43 @@ class LoadProducts extends Fixture
         $products = [
             [
                 'name' => 'Bread',
-                'categor' => 'Food'
+                'categor' => LoadCategories::NAME_FOOD
             ],
             [
                 'name' => 'Fish',
-                'categor' => 'Food'
+                'categor' => LoadCategories::NAME_FOOD
             ],
             [
                 'name' => 'Water',
-                'categor' => 'Drinks'
+                'categor' => LoadCategories::NAME_DRINKS
             ],
             [
                 'name' => 'Cola',
-                'categor' => 'Drinks'
+                'categor' => LoadCategories::NAME_DRINKS
             ],
             [
                 'name' => 'Sugar',
-                'categor' => 'Accessories'
+                'categor' => LoadCategories::NAME_ACCESSORIES
             ]
         ];
-        //dd($categories);
+
         foreach ($products as $productsValues) {
-            // Create Category object and set values from $categoryValues
+
             $product = new Product();
             $product->setName($productsValues['name']);
             $product->setPrice(mt_rand(10, 100));
-            // Set reference
+
             if($productsValues['categor']==(LoadCategories::NAME_FOOD)){
                 $product->setCategory($this->getReference(LoadCategories::NAME_FOOD));
             }
+
             if($productsValues['categor']==(LoadCategories::NAME_DRINKS)){
                 $product->setCategory($this->getReference(LoadCategories::NAME_DRINKS));
             }
+
             if($productsValues['categor']==(LoadCategories::NAME_ACCESSORIES)){
                 $product->setCategory($this->getReference(LoadCategories::NAME_ACCESSORIES));
             }
-            //$category->addProduct($product);
-            //$this->addReference(self::NAME_Bread, $product);
-            //$this->addReference(self::NAME_Cola, $product);
-            //$this->addReference(self::NAME_Sugar, $product);
             $manager->persist($product);
         }
         $manager->flush();
