@@ -24,4 +24,28 @@ You found {{ product.name }}. Great JOB!!!
             }
         }
     </script>
+    <br>
+
+    Tags:
+    {% for tags in product.tags %}
+
+    {% endfor %}
+    {% for tags in product.tags %}
+    <table id="myTable">
+
+            <td>
+                <a class="navbar-brand" href="{{path('tag_show',{ id: tags.id })}}">
+                    <i style="color: #444; font-size: 2rem;" class="pb-1 fad fa-cauldron"></i>
+                    <p class="pl-2 d-inline font-weight-bold" style="color: #444;">{{ tags.name }}</p>
+                </a>
+            </td>
+
+      <!---      <td><a href="{{ path('edit_tag',{ id: tags.id }) }}" class="button">Update {{ tags.name }}</a>
+            </td>
+            --->
+            <td><a href="{{ path('delete_tag',{ id: tags.id }) }}" class="button">Remove {{ tags.name }}</a>
+            </td>
+    </table>
+    {% endfor %}
+
 {% endblock %}

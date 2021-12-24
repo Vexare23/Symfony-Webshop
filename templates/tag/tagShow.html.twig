@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Tag   {% endblock %}
+
+{% block body %}
+
+You found the tag {{ tag.name }}. Great JOB!!!
+<br>
+<button type="button" onclick="myFunction(this)" id="1">Update {{ tag.name }}</button>
+<br>
+<button type="button" onclick="myFunction(this)" id="2">Delete {{ tag.name }}</button>
+<script>
+    function myFunction(button){
+        var x =button.id;
+        switch (x) {
+            case '1':
+                location.href = "{{ path('edit_tag',{ id: tag.id }) }}";
+                break;
+            case '2':
+                location.href = "{{ path('delete_tag',{ id: tag.id }) }}";
+                break;
+            default:
+                return false;
+        }
+    }
+</script>
+<br>
+
+{% endblock %}

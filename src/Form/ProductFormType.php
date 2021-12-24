@@ -6,6 +6,7 @@ namespace App\Form;
 
 use App\Entity\Category1;
 use App\Entity\Product;
+use App\Entity\Tag;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,7 +24,12 @@ class ProductFormType extends AbstractType
             ])
             ->add('category', EntityType::class, [
                 'class' => Category1::class,
-        ]);
+            ])
+            ->add('tags', EntityType::class, [
+                'expanded' => true,
+                'multiple' => true,
+                'class' => Tag::class,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

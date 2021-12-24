@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Tags  {% endblock %}
+
+{% block body %}
+
+    Those are all the tags!
+    <br>
+    <br>
+    {% for tags in tag %}
+        #{{ tags.name }}
+    {% endfor %}
+
+    <br>
+    <button type="button" onclick="myFunction()"> Add a new tag</button>
+    <script>
+        function myFunction(){
+                    location.href = "{{ path('new_tag')}}";
+            }
+    </script>
+{% endblock %}
+

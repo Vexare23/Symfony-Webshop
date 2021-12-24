@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Delete Tag {% endblock %}
+
+{% block body %}
+    <h1> Delete current Tag</h1>
+
+    {{ form_start(tagForm) }}
+    {{ form_widget(tagForm) }}
+
+    <button type="submit" class="btn btn-primary">Delete</button>
+
+    {{ form_end(tagForm) }}
+{% endblock %}

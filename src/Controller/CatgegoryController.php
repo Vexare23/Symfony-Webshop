@@ -25,7 +25,7 @@ class CatgegoryController extends AbstractController
         $category = $repository->findOneBy(['id' => $id]);
         if (!$category) {
             throw $this->createNotFoundException(
-                'No product found for id '.$id
+                'No category found for id '.$id
             );
         }
         //$category = $manager->getRepository(Category1::class)->find($id);

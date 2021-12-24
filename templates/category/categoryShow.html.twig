@@ -69,6 +69,18 @@
                                             <td>ID: {{ product.id }}
                                             </td>
                                         </tr>
+                                        <tr>
+                                            {% if not product.tags|length > 0 %}
+                                                <td>Tags: None =(
+                                                </td>
+                                            {% else %}
+                                                <td>Tags:
+                                                    {% for tags in product.tags %}
+                                                        #{{ tags.name }}
+                                                    {% endfor %}
+                                                </td>
+                                                {% endif %}
+                                        </tr>
                                     </table>
                             </div>
                         </div>
@@ -80,5 +92,5 @@
         </div>
     </div>
     </div>
-
+    <a href="{{ path('view_tags') }}" class="button">View all tags</a>
 {% endblock %}

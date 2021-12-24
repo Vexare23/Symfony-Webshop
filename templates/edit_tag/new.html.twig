@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Tag Update {% endblock %}
+
+{% block body %}
+    <h1> Update current Tag</h1>
+
+    {{ form_start(tagForm) }}
+    {{ form_widget(tagForm) }}
+
+    <button type="submit" class="btn btn-primary">Update</button>
+
+    {{ form_end(tagForm) }}
+{% endblock %}

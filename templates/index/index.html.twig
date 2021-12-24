@@ -29,6 +29,8 @@
 
     <br>
     <button type="button" onclick="myFunction(this)" id="2">Add new product</button>
+    <br>
+    <button type="button" onclick="myFunction(this)" id="3">Add new tag</button>
 
     <script>
         function myFunction(button){
@@ -39,6 +41,9 @@
                     break;
                 case '2':
                     location.href = "{{ path('new_product') }}";
+                    break;
+                case '3':
+                    location.href = "{{ path('new_tag') }}";
                     break;
                 default:
                     return false;

@@ -4,39 +4,40 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Product;
-use App\Form\ProductFormType;
+use App\Entity\Tag;
+use App\Form\TagFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ProductFormController extends AbstractController
+class TagFormController extends AbstractController
 {
     /**
-     * @Route("newProduct", name="new_product")
+     * @Route("newTag", name="new_tag")
      */
     public function new(EntityManagerInterface $manager, Request $request): Response
     {
-        $form = $this->createForm(ProductFormType::class);
+
+        $form = $this->createForm(TagFormType::class);
         $form->handleRequest($request);
         //dd($form);
-        if($form->isSubmitted() && $form->isValid()){
-            /** @var Product $product */
-            $product = $form->getData();
-            //dd($product->getTags());
-            $manager->persist($product);
+        if ($form->isSubmitted() && $form->isValid()) {
+            ///** @var Tag $tag */
+            $tag = $form->getData();
+
+            $manager->persist($tag);
             $manager->flush();
 
-            $this->addFlash('success', 'Product added! Congrats! =D');
+            $this->addFlash('success', 'Tag added! Congrats! =D');
 
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('product_form/new.html.twig',
+        return $this->render('tag_form/new.html.twig',
             [
-                'productForm' =>$form->createView(),
+                'tagForm' => $form->createView(),
             ]);
     }
 }
