@@ -8,7 +8,9 @@
     <br>
     <br>
     {% for tags in tag %}
-        #{{ tags.name }}
+        <a href="{{ path('productsByTag_show',{ id: tags.id }) }}" class="button"> #{{ tags.name }}
+        </a>
+        <br>
     {% endfor %}
 
     <br>

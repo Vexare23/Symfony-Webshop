@@ -23,15 +23,17 @@ class DeleteCategory extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
+            /*
             if($category->getProducts()->isEmpty())
             {
+            */
                 $manager->remove($category);
                 $manager->flush();
 
                 $this->addFlash('success', 'Category deleted successfully');
 
                 return $this->redirectToRoute('home');
-            }
+            //}
         } else {
             $this->addFlash('failed', 'A Category that still contains Products cannot be deleted!');
         }

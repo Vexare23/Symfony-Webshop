@@ -19,16 +19,15 @@ class ProductFormType extends AbstractType
         $builder
             ->add('name')
             ->add('price')
-            ->add('updatedAt', null, [
-                'widget' => 'single_text'
-            ])
             ->add('category', EntityType::class, [
                 'class' => Category1::class,
             ])
-            ->add('tags', EntityType::class, [
-                'expanded' => true,
-                'multiple' => true,
+            ->add('tags', EntityType::class,[
                 'class' => Tag::class,
+                'choice_label' => 'name',
+                'label'=>'Tags',
+                'multiple'=>true,
+                'expanded' => true,
             ]);
     }
 

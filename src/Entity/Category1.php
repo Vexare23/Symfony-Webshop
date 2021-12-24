@@ -28,7 +28,7 @@ class Category1
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity=Product::class, mappedBy="category")
+     * @ORM\OneToMany(targetEntity=Product::class, mappedBy="category", cascade={"remove"})
      */
     private $products;
 

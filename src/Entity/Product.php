@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
+ * @Gedmo\Loggable
  */
 class Product
 {
@@ -34,6 +35,7 @@ class Product
     private $name;
 
     /**
+     * @Gedmo\Versioned
      * @ORM\Column(type="float", nullable=true)
      * @Assert\NotBlank()
      * @Assert\Positive()

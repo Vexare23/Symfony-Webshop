@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} ProductsByTag  {% endblock %}
+
+{% block body %}
+
+Those are all the Products that have the tag {{ tag }}
+<br>
+<br>
+{% for prod in prodByTag %}
+<a href="{{ path('product_show',{ id: prod.id }) }}"> #{{ prod.name }}
+</a>
+    <br>
+    {% endfor %}
+    <br>
+    <button type="button" onclick="myFunction(this)" id="1">Add a new tag </button>
+    <br>
+    <button type="button" onclick="myFunction(this)" id="2"> Back to tags </button>
+    <script>
+        function myFunction(button){
+            var x =button.id;
+            switch (x) {
+                case '1':
+                    location.href = "{{ path('new_tag')}}";
+                    break;
+                case '2':
+                    location.href = "{{ path('view_tags')}}";
+                    break;
+                default:
+                    return false;
+            }
+        }
+    </script>
+
+    {% endblock %}
