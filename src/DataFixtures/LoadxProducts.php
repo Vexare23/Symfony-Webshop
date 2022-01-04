@@ -17,23 +17,28 @@ class LoadxProducts extends Fixture
         $products = [
             [
                 'name' => 'Bread',
-                'categor' => LoadCategories::NAME_FOOD
+                'categor' => LoadCategories::NAME_FOOD,
+                'tags' => [LoadTags::NAME_Tag1, LoadTags::NAME_Tag2]
             ],
             [
                 'name' => 'Fish',
-                'categor' => LoadCategories::NAME_FOOD
+                'categor' => LoadCategories::NAME_FOOD,
+                 'tags' => [LoadTags::NAME_Tag1, LoadTags::NAME_Tag2]
             ],
             [
                 'name' => 'Water',
-                'categor' => LoadCategories::NAME_DRINKS
+                'categor' => LoadCategories::NAME_DRINKS,
+                 'tags' => [LoadTags::NAME_Tag2, LoadTags::NAME_Tag3]
             ],
             [
                 'name' => 'Cola',
-                'categor' => LoadCategories::NAME_DRINKS
+                'categor' => LoadCategories::NAME_DRINKS,
+                 'tags' => [LoadTags::NAME_Tag2, LoadTags::NAME_Tag3]
             ],
             [
                 'name' => 'Sugar',
-                'categor' => LoadCategories::NAME_ACCESSORIES
+                'categor' => LoadCategories::NAME_ACCESSORIES,
+                'tags' => [LoadTags::NAME_Tag1, LoadTags::NAME_Tag3]
             ]
         ];
 
@@ -43,23 +48,12 @@ class LoadxProducts extends Fixture
             $product->setName($productsValues['name']);
             $product->setPrice(mt_rand(10, 100));
 
-            if($productsValues['categor']==(LoadCategories::NAME_FOOD)){
-                $product->setCategory($this->getReference(LoadCategories::NAME_FOOD));
-                $product->addTag($this->getReference(LoadTags::NAME_Tag1));
-                $product->addTag($this->getReference(LoadTags::NAME_Tag2));
-            }
+            $product->setCategory($this->getReference($productsValues['categor']));
+            foreach ($productsValues['tags'] as $tag)
+                {
+                    $product->addTag($this->getReference($tag));
+                }
 
-            if($productsValues['categor']==(LoadCategories::NAME_DRINKS)){
-                $product->setCategory($this->getReference(LoadCategories::NAME_DRINKS));
-                $product->addTag($this->getReference(LoadTags::NAME_Tag2));
-                $product->addTag($this->getReference(LoadTags::NAME_Tag3));
-            }
-
-            if($productsValues['categor']==(LoadCategories::NAME_ACCESSORIES)){
-                $product->setCategory($this->getReference(LoadCategories::NAME_ACCESSORIES));
-                $product->addTag($this->getReference(LoadTags::NAME_Tag1));
-                $product->addTag($this->getReference(LoadTags::NAME_Tag3));
-            }
             $manager->persist($product);
         }
         $manager->flush();

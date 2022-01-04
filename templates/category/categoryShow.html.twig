@@ -13,8 +13,10 @@
         <div class="row">
             <div class="col-14">
                 <h2 class="my-4">{{ category.name }}
+                    {% if isAdmin %}
                     <button type="button" onclick="myFunction(this)" id="1">Update {{ category.name }}</button>
                     <button type="button" onclick="myFunction(this)" id="2">Delete {{ category.name }}</button>
+                    {% endif %}
                     <script>
                         function myFunction(button){
                             var x =button.id;

@@ -32,7 +32,13 @@ class CatgegoryController extends AbstractController
         dump($category->getName());
         $this->log->info($category->getName());
         dump($category->getProducts());
+
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $isAdmin = false;
+        }
+        dump($isAdmin);
         return $this->render('category/categoryShow.html.twig',[
+            'isAdmin' => $isAdmin,
             'category' => $category,
         ]);
     }

@@ -7,7 +7,7 @@
     Those are all the tags!
     <br>
     <br>
-    {% for tags in tag %}
+    {% for tags in pager %}
         <a href="{{ path('productsByTag_show',{ id: tags.id }) }}" class="button"> #{{ tags.name }}
         </a>
         <br>

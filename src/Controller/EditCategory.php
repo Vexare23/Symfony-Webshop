@@ -7,11 +7,15 @@ namespace App\Controller;
 use App\Entity\Category1;
 use App\Form\CategoryFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @IsGranted("ROLE_ADMIN")
+ */
 class EditCategory extends AbstractController
 {
     /**
@@ -19,6 +23,10 @@ class EditCategory extends AbstractController
      */
     public function edit(Category1 $category, Request $request, EntityManagerInterface $manager): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException('No access for you!');
+        }
+
         $form = $this->createForm(CategoryFormType::class, $category);
 
         $form->handleRequest($request);

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\DataFixtures;
 
 use App\Entity\Category1;
+use App\Factory\Category1Factory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -36,6 +37,8 @@ class LoadCategories extends Fixture
             // Set reference
             $this->addReference($categoryValues['name'], $category);
         }
+        //Category1Factory::createMany(6);
+
         $manager->flush();
     }
 }

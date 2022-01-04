@@ -7,7 +7,7 @@
 Those are all the Products that have the tag {{ tag }}
 <br>
 <br>
-{% for prod in prodByTag %}
+{% for prod in pager %}
 <a href="{{ path('product_show',{ id: prod.id }) }}"> #{{ prod.name }}
 </a>
     <br>
