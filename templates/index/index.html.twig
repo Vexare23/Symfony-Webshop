@@ -26,11 +26,16 @@
                 </tr>
             {% endfor %}
     </table>
-
+    <br>
+    <a href="{{ path('view_products') }}" class="button">View all products</a>
     <br>
     <button type="button" onclick="myFunction(this)" id="2">Add new product</button>
     <br>
+    <a href="{{ path('view_tags') }}" class="button">View all tags</a>
+    <br>
     <button type="button" onclick="myFunction(this)" id="3">Add new tag</button>
+
+
 
     <script>
         function myFunction(button){

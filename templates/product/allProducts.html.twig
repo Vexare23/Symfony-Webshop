@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Products  {% endblock %}
+
+{% block body %}
+
+    Those are all the Products!
+    <br>
+    <br>
+    {% for product in products %}
+        <a href="{{ path('product_show',{ id: product.id }) }}" class="button"> #{{ product.name }}
+        </a>
+        <br>
+    {% endfor %}
+
+    <br>
+    <button type="button" onclick="myFunction()"> Add a new Product</button>
+    <script>
+        function myFunction(){
+            location.href = "{{ path('new_product')}}";
+        }
+    </script>
+{% endblock %}
+
